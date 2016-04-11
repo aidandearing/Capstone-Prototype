@@ -1,0 +1,49 @@
+<food>
+	<name>Tofu</name>
+	<description>...</description>
+	<value>8.00</value>
+	<weight>0.3</weight><!--in kg-->
+	<size></size><!--in cm cubed-->
+	<stack>1</stack><!-- The number of these items contained within one of these items, how many uses it has -->
+	<rarity>10</rarity><!--1 in # chance of spawning-->
+	<model>small_white_box</model>
+	<categories>
+		<category>Vegan</category>
+		<category>Cheese</category>
+		<category>Tasteless</category>
+	</categories>
+	<decay>2</decay>
+	<decayNames>
+		<decay stage="0">Fresh</decay>
+		<decay stage="1">Weird</decay>
+		<decay stage="2">Rotten</decay>
+	</decayNames>
+	<food>
+		<decay stage="0">30</decay>
+		<decay stage="1">15</decay>
+		<decay stage="2">5</decay>
+	</food>
+	<nutrition>
+		<decay stage="0">2</decay>
+		<decay stage="1">1</decay>
+		<decay stage="2">0</decay>
+	</nutrition>
+	<poison>
+		<decay stage="0">-1</decay>
+		<decay stage="1">0</decay>
+		<decay stage="2">1</decay>
+	</poison>
+	<flags>
+		<canBeCooked>true</canBeCooked>
+		<canBeCut>true</canBeCut>
+		<canBeFrozen>true</canBeFrozen>
+	</flags>
+	<modifiers>
+		<modifier type="Sliced">
+			<stack>12</stack>
+		</modifier>
+	</modifiers>
+	<effects>
+		<effect>Tofu Zen</effect>
+	</effects>
+</food>
