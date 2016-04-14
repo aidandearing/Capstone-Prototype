@@ -20,19 +20,19 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            movementVec += new Vector3(0, 1, 0);
+            movementVec += new Vector3(-1, 1, 0);
         }
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            movementVec -= new Vector3(1, 0, 0);
+            movementVec += new Vector3(-1, -1, 0);
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            movementVec -= new Vector3(0, 1, 0);
+            movementVec += new Vector3(1, -1, 0);
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            movementVec += new Vector3(1, 0, 0);
+            movementVec += new Vector3(1, 1, 0);
         }
 
         movementVec.Normalize();
