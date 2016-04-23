@@ -39,5 +39,8 @@ public class PlayerController : MonoBehaviour
         movementVec *= movementSpeed;
 
         selfRigid.MovePosition(transform.position + movementVec * Time.deltaTime);
+
+        if (movementVec.magnitude > 0)
+            selfRigid.MoveRotation(Mathf.Rad2Deg * Mathf.Atan2(movementVec.y, movementVec.x) + 270);
     }
 }
