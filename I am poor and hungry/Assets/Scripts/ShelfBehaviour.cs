@@ -22,7 +22,7 @@ public class ShelfBehaviour : MonoBehaviour
 
     void Interact(GameObject interactor)
     {
-        if (lootTimes <= lootTimesMax)
+        if (lootTimes < lootTimesMax)
         {
             PlayerController player = interactor.GetComponent<PlayerController>();
 
