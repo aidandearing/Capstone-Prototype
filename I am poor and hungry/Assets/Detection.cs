@@ -19,7 +19,20 @@ public class Detection : MonoBehaviour {
 
 	
 	}
-	
+//	void OnTriggerEnter(Collider other)
+//	{
+//		if (other.gameObject.CompareTag("Player"))
+//		{
+//			Debug.Log("Detected!");
+//		}
+//	}
+//	void OnTriggerExit(Collider other)
+//	{
+//		if (other.gameObject.CompareTag("Player"))
+//		{
+//			Debug.Log("Not Detected!");
+//		}
+//	}
 	// Update is called once per frame
 	void Update () 
 	{
@@ -27,7 +40,8 @@ public class Detection : MonoBehaviour {
 
 		if (v > -threshold && v < threshold)
 		{
-			RaycastHit2D hit = Physics2D.Raycast(transform.position,player.transform.position,range);
+			
+			RaycastHit2D hit = Physics2D.Raycast(transform.position,player.transform.position - transform.forward,range);
 
 			if (hit != null)
 			{
