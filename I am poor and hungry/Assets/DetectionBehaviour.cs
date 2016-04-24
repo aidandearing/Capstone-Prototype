@@ -13,6 +13,8 @@ public class DetectionBehaviour : MonoBehaviour
 
     private bool detectedPlayer = false;
     private Collider2D playerLastCollision;
+	public Light cameraLight;
+	public bool increaseIntensity;
 
     // Use this for initialization
     void Start()
@@ -41,6 +43,23 @@ public class DetectionBehaviour : MonoBehaviour
                     {
                         if (detectedPlayer)
                         {
+							if (cameraLight.intensity >= 2.0f)
+							{
+								increaseIntensity = false;
+							}
+							if (cameraLight.intensity == 0.0f)
+							{
+								increaseIntensity = true;
+							}
+							if (increaseIntensity)
+							{
+								cameraLight.intensity += 0.1f;
+							}
+							if (!increaseIntensity)
+							{
+								cameraLight.intensity -= 0.1f;
+							}
+
                             OnDetectionStay(hit.collider);
                         }
                         else
@@ -56,7 +75,9 @@ public class DetectionBehaviour : MonoBehaviour
                     if (detectedPlayer)
                     {
                         OnDetectionEnd(playerLastCollision);
+
                         detectedPlayer = false;
+
                     }
                 }
             }
@@ -86,6 +107,7 @@ public class DetectionBehaviour : MonoBehaviour
 //			//detectInstance = Instantiate(detectIcon, new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z - 2.5f), new Quaternion(-1,0,0,1)) as GameObject;
 //        }
 		detectIcon.SetActive(true);
+		cameraLight.color = Color.red;
         SendMessage("StartDetectingPlayer", other.gameObject, SendMessageOptions.DontRequireReceiver);
 
         Debug.Log("Started detecting player");
@@ -104,6 +126,8 @@ public class DetectionBehaviour : MonoBehaviour
 //            Destroy(detectInstance);
 //        }
 		detectIcon.SetActive(false);
+		cameraLight.intensity = 2.0f;
+		cameraLight.color = Color.white;
         SendMessage("StopDetectingPlayer", other.gameObject, SendMessageOptions.DontRequireReceiver);
 
         Debug.Log("Ended detecting player");
