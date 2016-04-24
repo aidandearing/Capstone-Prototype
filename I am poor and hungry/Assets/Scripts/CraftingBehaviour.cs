@@ -33,9 +33,9 @@ public class CraftingBehaviour : MonoBehaviour
                 Food[] foods = new Food[inventory.items.Count];
                 for (int i = 0; i < foods.Length; ++i)
                 {
-                    if (inventory.items[i] is FoodUnity)
+                    if (inventory.items[i] as GameObject)
                     {
-                        foods[i] = (inventory.items[i] as FoodUnity).food;
+                        foods[i] = (inventory.items[i] as GameObject).GetComponent<FoodUnity>().food;
                     }
                 }
                 foreach (Recipe recipe in Recipe.recipes)

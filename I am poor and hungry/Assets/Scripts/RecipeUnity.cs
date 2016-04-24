@@ -15,7 +15,9 @@ public class RecipeComponent
 
     public bool Verify(Food food)
     {
-        bool named = food.name == name || name == "";
+        if (!(food.name == name || name == ""))
+            return false;
+
         int categories = 0;
         for (int i = 0; i < category.Length; ++i)
         {
@@ -28,15 +30,21 @@ public class RecipeComponent
                 }
             }
         }
-        bool modified = food.modifier.HasModifiers(modifier.GetModifiers());
+        if (categories != category.Length)
+            return false;
 
-        return named && categories == category.Length && modified;
+        if (!food.modifier.HasModifiers(modifier.GetModifiers()))
+            return false;
+
+        return true;
     }
 }
 
 [System.Serializable]
 public class Recipe
 {
+    public string name;
+    public static ArrayList names;
     public static ArrayList recipes;
     public RecipeComponent[] components;
     public GameObject[] results;
@@ -44,9 +52,16 @@ public class Recipe
     Recipe()
     {
         if (recipes == null)
+        {
             recipes = new ArrayList();
+            names = new ArrayList();
+        }
 
-        recipes.Add(this);
+        if (!names.Contains(name))
+        {
+            recipes.Add(this);
+            names.Add(name);
+        }
     }
 
     public bool CanBeMade(Food[] foods)
@@ -78,7 +93,7 @@ public class RecipeUnity : MonoBehaviour
 
     void Start()
     {
-
+        Debug.Log(this.name + " : " + recipe);
     }
 
     void Update()
