@@ -9,6 +9,10 @@ public class DetectionBehaviour : MonoBehaviour
     public float viewAngle = 90;
 
     private float viewThreshold;
+<<<<<<< HEAD
+=======
+    private GameObject detectInstance;
+>>>>>>> c623b0542827d3dd11f53993814254fa4d92e46a
 
     private bool detectedPlayer = false;
     private Collider2D playerLastCollision;
@@ -18,7 +22,6 @@ public class DetectionBehaviour : MonoBehaviour
     {
         Vector3 angle = new Vector3(Mathf.Sin(viewAngle / 2 * Mathf.Deg2Rad), Mathf.Cos(viewAngle / 2 * Mathf.Deg2Rad), 0);
         viewThreshold = Vector3.Dot((transform.localToWorldMatrix * new Vector3(0, 1, 0)).normalized, (transform.localToWorldMatrix * angle).normalized);
-		detectIcon.SetActive(false);
     }
 
     // Update is called once per frame
@@ -26,7 +29,7 @@ public class DetectionBehaviour : MonoBehaviour
     {
 		//Debug.DrawRay(transform.forward,player.transform.position );
         Vector3 delta = player.transform.position - transform.position;
-		//Debug.DrawLine(transform.position, transform.position + delta, new Color(255,0,0), 0.1f);
+        Debug.DrawLine(transform.position, transform.position + delta, new Color(255,0,0), 0.1f);
 
         if (delta.magnitude <= viewDistance)
         {
@@ -42,7 +45,10 @@ public class DetectionBehaviour : MonoBehaviour
                     {
                         if (detectedPlayer)
                         {
+<<<<<<< HEAD
 
+=======
+>>>>>>> c623b0542827d3dd11f53993814254fa4d92e46a
                             OnDetectionStay(hit.collider);
                         }
                         else
@@ -85,7 +91,14 @@ public class DetectionBehaviour : MonoBehaviour
 
     void OnDetectionStart(Collider2D other)
     {
+<<<<<<< HEAD
 		detectIcon.SetActive(true);
+=======
+        if (detectInstance == null)
+        {
+            detectInstance = Instantiate(detectIcon, transform.position, new Quaternion()) as GameObject;
+        }
+>>>>>>> c623b0542827d3dd11f53993814254fa4d92e46a
         SendMessage("StartDetectingPlayer", other.gameObject, SendMessageOptions.DontRequireReceiver);
 
         Debug.Log("Started detecting player");
@@ -99,7 +112,15 @@ public class DetectionBehaviour : MonoBehaviour
 
     void OnDetectionEnd(Collider2D other)
     {
+<<<<<<< HEAD
 		detectIcon.SetActive(false);
+=======
+        if (detectInstance != null)
+        {
+            Destroy(detectInstance);
+            detectInstance = null;
+        }
+>>>>>>> c623b0542827d3dd11f53993814254fa4d92e46a
         SendMessage("StopDetectingPlayer", other.gameObject, SendMessageOptions.DontRequireReceiver);
 
         Debug.Log("Ended detecting player");

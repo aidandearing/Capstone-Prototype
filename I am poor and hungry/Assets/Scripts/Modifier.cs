@@ -77,18 +77,23 @@ public class ModifierHandler
     /// <returns>True on having the modifier, false on not</returns>
     public bool HasModifier(Modifier.ModType type)
     {
-        if ((int)type < 4)
+        if ((int)type != 0)
         {
-            return cut.Type() == type;
+            if ((int)type < 4)
+            {
+                return cut.Type() == type;
+            }
+            else if ((int)type < 7)
+            {
+                return temp.Type() == type;
+            }
+            else
+            {
+                return cook.Type() == type;
+            }
         }
-        else if ((int)type < 7)
-        {
-            return temp.Type() == type;
-        }
-        else
-        {
-            return cook.Type() == type;
-        }
+
+        return true;
     }
 
     public bool HasModifiers(Modifier.ModType[] types)
