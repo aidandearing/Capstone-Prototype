@@ -3,12 +3,18 @@ using System.Collections;
 
 public class Inventory : MonoBehaviour
 {
-    private ArrayList items;
+    public GameObject[] itemsToStart;
+    public ArrayList items;
 
     // Use this for initialization
     void Start()
     {
         items = new ArrayList();
+
+        foreach (GameObject obj in itemsToStart)
+        {
+            items.Add(obj);
+        }
     }
 
     // Update is called once per frame

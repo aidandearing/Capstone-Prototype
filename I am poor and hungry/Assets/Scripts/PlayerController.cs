@@ -3,9 +3,13 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
+    public Inventory inventory;
+
     public float movementSpeed = 3;
 
     private Rigidbody2D selfRigid;
+
+    public bool handsFull = false;
 
     // Use this for initialization
     void Start()
@@ -42,5 +46,14 @@ public class PlayerController : MonoBehaviour
 
         if (movementVec.magnitude > 0)
             selfRigid.MoveRotation(Mathf.Rad2Deg * Mathf.Atan2(movementVec.y, movementVec.x) + 270);
+
+        if (inventory.items.Count > 0)
+        {
+            handsFull = true;
+        }
+        else
+        {
+            handsFull = false;
+        }
     }
 }
