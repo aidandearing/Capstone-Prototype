@@ -3,7 +3,10 @@ using System.Collections;
 
 public class ShelfBehaviour : MonoBehaviour
 {
-    public FoodUnity[] foodObjects;
+    public Inventory inventory;
+
+    public int lootTimes = 0;
+    public int lootTimesMax = 1;
 
     // Use this for initialization
     void Start()
@@ -17,9 +20,18 @@ public class ShelfBehaviour : MonoBehaviour
 
     }
 
-    void OnTriggerEnter(Collider collider)
+    void Interact(GameObject interactor)
     {
-        // Ensure the collider is a player
-        // If the player interacts, give them one item at random
+        if (lootTimes <= lootTimesMax)
+        {
+            PlayerController player = interactor.GetComponent<PlayerController>();
+
+            if (player != null)
+            {
+                // Give them an item
+                player.inventory.AddItem(inventory.RetrieveRandomItem());
+                lootTimes++;
+            }
+        }
     }
 }

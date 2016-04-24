@@ -13,7 +13,7 @@ public class Inventory : MonoBehaviour
 
         foreach (GameObject obj in itemsToStart)
         {
-            items.Add(obj);
+            AddItem(obj);
         }
     }
 
@@ -26,12 +26,21 @@ public class Inventory : MonoBehaviour
     public void AddItem(GameObject item)
     {
         items.Add(item);
+        Debug.Log("An item of name: " + item.name + " has been added to: " + this.name);
     }
 
     public GameObject RetrieveItem()
     {
         GameObject item = items[0] as GameObject;
+        Debug.Log("An item of name: " + item.name + " has been removed from: " + this.name);
         items.RemoveAt(0);
+        return item;
+    }
+
+    public GameObject RetrieveRandomItem()
+    {
+        GameObject item = items[Random.Range(0, items.Count)] as GameObject;
+        items.Remove(item);
         return item;
     }
 }
