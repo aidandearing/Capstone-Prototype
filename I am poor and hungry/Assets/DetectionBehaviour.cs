@@ -9,7 +9,7 @@ public class DetectionBehaviour : MonoBehaviour
     public float viewAngle = 90;
 
     private float viewThreshold;
-    private GameObject detectInstance;
+    public GameObject detectInstance;
 
     private bool detectedPlayer = false;
     private Collider2D playerLastCollision;
@@ -19,12 +19,15 @@ public class DetectionBehaviour : MonoBehaviour
     {
         Vector3 angle = new Vector3(Mathf.Sin(viewAngle / 2 * Mathf.Deg2Rad), Mathf.Cos(viewAngle / 2 * Mathf.Deg2Rad), 0);
         viewThreshold = Vector3.Dot((transform.localToWorldMatrix * new Vector3(0, 1, 0)).normalized, (transform.localToWorldMatrix * angle).normalized);
+		detectIcon.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
         Vector3 delta = player.transform.position - transform.position;
+		//Debug.DrawLine(transform.position, transform.position + delta, new Color(255,0,0), 0.1f);
+
         if (delta.magnitude <= viewDistance)
         {
             float dot = Vector3.Dot((transform.localToWorldMatrix * new Vector3(0, 1, 0)).normalized, delta.normalized);
@@ -78,11 +81,11 @@ public class DetectionBehaviour : MonoBehaviour
 
     void OnDetectionStart(Collider2D other)
     {
-        if (detectInstance == null)
-        {
-            detectInstance = Instantiate(detectIcon, transform.position, new Quaternion()) as GameObject;
-        }
-
+//        if (detectInstance == null)
+//        {
+//			//detectInstance = Instantiate(detectIcon, new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z - 2.5f), new Quaternion(-1,0,0,1)) as GameObject;
+//        }
+		detectIcon.SetActive(true);
         SendMessage("StartDetectingPlayer", other.gameObject, SendMessageOptions.DontRequireReceiver);
 
         Debug.Log("Started detecting player");
@@ -96,11 +99,11 @@ public class DetectionBehaviour : MonoBehaviour
 
     void OnDetectionEnd(Collider2D other)
     {
-        if (detectInstance != null)
-        {
-            Destroy(detectInstance);
-        }
-
+//        if (detectInstance != null)
+//        {
+//            Destroy(detectInstance);
+//        }
+		detectIcon.SetActive(false);
         SendMessage("StopDetectingPlayer", other.gameObject, SendMessageOptions.DontRequireReceiver);
 
         Debug.Log("Ended detecting player");
