@@ -29,6 +29,14 @@ public class Inventory : MonoBehaviour
         Debug.Log("An item of name: " + item.name + " has been added to: " + this.name);
     }
 
+    public void AddItems(GameObject[] items)
+    {
+        foreach (GameObject obj in items)
+        {
+            AddItem(obj);
+        }
+    }
+
     public GameObject RetrieveItem()
     {
         GameObject item = items[0] as GameObject;

@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using System.Collections;
 
+[System.Serializable]
 public class Modifier
 {
     public enum ModType { None, Sliced, Blended, Pasted, Warmed, Cooled, Frozen, Grilled, Boiled, Fried, Cooked, Baked, Burnt };
 
-    ModType type;
+    public ModType type;
 
     public Modifier()
     {
@@ -24,8 +26,11 @@ public class Modifier
 [System.Serializable]
 public class ModifierHandler
 {
+    [SerializeField]
     Modifier cut = new Modifier();
+    [SerializeField]
     Modifier temp = new Modifier();
+    [SerializeField]
     Modifier cook = new Modifier();
 
     /// <summary>
@@ -84,5 +89,25 @@ public class ModifierHandler
         {
             return cook.Type() == type;
         }
+    }
+
+    public bool HasModifiers(Modifier.ModType[] types)
+    {
+        foreach (Modifier.ModType type in types)
+        {
+            if (!HasModifier(type))
+                return false;
+        }
+
+        return true;
+    }
+
+    public Modifier.ModType[] GetModifiers()
+    {
+        Modifier.ModType[] array = new Modifier.ModType[3];
+        array[0] = cut.Type();
+        array[1] = temp.Type();
+        array[2] = cook.Type();
+        return array;
     }
 }

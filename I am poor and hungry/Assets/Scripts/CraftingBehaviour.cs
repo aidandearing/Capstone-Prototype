@@ -30,6 +30,21 @@ public class CraftingBehaviour : MonoBehaviour
             else
             {
                 // this is where we show the UI for recipes
+                Food[] foods = new Food[inventory.items.Count];
+                for (int i = 0; i < foods.Length; ++i)
+                {
+                    if (inventory.items[i] is FoodUnity)
+                    {
+                        foods[i] = (inventory.items[i] as FoodUnity).food;
+                    }
+                }
+                foreach (Recipe recipe in Recipe.recipes)
+                {
+                    if (recipe.CanBeMade(foods))
+                    {
+                        player.inventory.AddItems(recipe.Result());
+                    }
+                }
             }
         }
     }
