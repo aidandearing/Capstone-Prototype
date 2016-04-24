@@ -9,12 +9,9 @@ public class DetectionBehaviour : MonoBehaviour
     public float viewAngle = 90;
 
     private float viewThreshold;
-    public GameObject detectInstance;
 
     private bool detectedPlayer = false;
     private Collider2D playerLastCollision;
-	public Light cameraLight;
-	public bool increaseIntensity;
 
     // Use this for initialization
     void Start()
@@ -27,6 +24,7 @@ public class DetectionBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		//Debug.DrawRay(transform.forward,player.transform.position );
         Vector3 delta = player.transform.position - transform.position;
 		//Debug.DrawLine(transform.position, transform.position + delta, new Color(255,0,0), 0.1f);
 
@@ -37,28 +35,13 @@ public class DetectionBehaviour : MonoBehaviour
             if (dot >= viewThreshold)
             {
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, delta);
+
                 if (hit.collider != null)
                 {
                     if (hit.collider.gameObject.tag == "Player")
                     {
                         if (detectedPlayer)
                         {
-							if (cameraLight.intensity >= 2.0f)
-							{
-								increaseIntensity = false;
-							}
-							if (cameraLight.intensity == 0.0f)
-							{
-								increaseIntensity = true;
-							}
-							if (increaseIntensity)
-							{
-								cameraLight.intensity += 0.1f;
-							}
-							if (!increaseIntensity)
-							{
-								cameraLight.intensity -= 0.1f;
-							}
 
                             OnDetectionStay(hit.collider);
                         }
@@ -102,12 +85,7 @@ public class DetectionBehaviour : MonoBehaviour
 
     void OnDetectionStart(Collider2D other)
     {
-//        if (detectInstance == null)
-//        {
-//			//detectInstance = Instantiate(detectIcon, new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z - 2.5f), new Quaternion(-1,0,0,1)) as GameObject;
-//        }
 		detectIcon.SetActive(true);
-		cameraLight.color = Color.red;
         SendMessage("StartDetectingPlayer", other.gameObject, SendMessageOptions.DontRequireReceiver);
 
         Debug.Log("Started detecting player");
@@ -121,13 +99,7 @@ public class DetectionBehaviour : MonoBehaviour
 
     void OnDetectionEnd(Collider2D other)
     {
-//        if (detectInstance != null)
-//        {
-//            Destroy(detectInstance);
-//        }
 		detectIcon.SetActive(false);
-		cameraLight.intensity = 2.0f;
-		cameraLight.color = Color.white;
         SendMessage("StopDetectingPlayer", other.gameObject, SendMessageOptions.DontRequireReceiver);
 
         Debug.Log("Ended detecting player");
