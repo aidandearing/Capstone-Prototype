@@ -1,0 +1,17 @@
+/Users/Matbecker/Desktop/Capstone-Prototype/I am poor and hungry/Temp/bin/Debug/Assembly-CSharp-firstpass.dll.mdb
+/Users/Matbecker/Desktop/Capstone-Prototype/I am poor and hungry/Temp/bin/Debug/Assembly-CSharp-firstpass.dll
+/Users/Matbecker/Desktop/Capstone-Prototype/I am poor and hungry/obj/Debug/Assembly-CSharp-firstpass.dll
+/Users/Matbecker/Desktop/Capstone-Prototype/I am poor and hungry/obj/Debug/Assembly-CSharp-firstpass.dll.mdb
+/Users/Matbecker/Desktop/Capstone-Prototype/I am poor and hungry/Temp/bin/Debug/UnityEngine.dll
+/Users/Matbecker/Desktop/Capstone-Prototype/I am poor and hungry/Temp/bin/Debug/UnityEditor.dll
+/Users/Matbecker/Desktop/Capstone-Prototype/I am poor and hungry/Temp/bin/Debug/UnityEngine.UI.dll
+/Users/Matbecker/Desktop/Capstone-Prototype/I am poor and hungry/Temp/bin/Debug/UnityEngine.Networking.dll
+/Users/Matbecker/Desktop/Capstone-Prototype/I am poor and hungry/Temp/bin/Debug/Mono.Cecil.dll
+/Users/Matbecker/Desktop/Capstone-Prototype/I am poor and hungry/Temp/bin/Debug/Unity.SerializationLogic.dll
+/Users/Matbecker/Desktop/Capstone-Prototype/I am poor and hungry/Temp/bin/Debug/Unity.DataContract.dll
+/Users/Matbecker/Desktop/Capstone-Prototype/I am poor and hungry/Temp/bin/Debug/ICSharpCode.NRefactory.dll
+/Users/Matbecker/Desktop/Capstone-Prototype/I am poor and hungry/Temp/bin/Debug/Unity.UNetWeaver.dll
+/Users/Matbecker/Desktop/Capstone-Prototype/I am poor and hungry/Temp/bin/Debug/Unity.UNetWeaver.dll.mdb
+/Users/Matbecker/Desktop/Capstone-Prototype/I am poor and hungry/Temp/bin/Debug/Unity.CecilTools.dll
+/Users/Matbecker/Desktop/Capstone-Prototype/I am poor and hungry/Temp/bin/Debug/Mono.Cecil.Pdb.dll
+/Users/Matbecker/Desktop/Capstone-Prototype/I am poor and hungry/Temp/bin/Debug/Mono.Cecil.Mdb.dll

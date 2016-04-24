@@ -15,20 +15,32 @@ public class Detection : MonoBehaviour {
 		Vector3 rotatedForward = transform.forward;
 		transform.Rotate(transform.forward, -angle / 2);
 		threshold = Vector3.Dot(rotatedForward,transform.forward);
+		player = GameObject.FindGameObjectWithTag("Player");
 
 	
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 		float v = Vector3.Dot(transform.forward, player.transform.position);
 
 		if (v > -threshold && v < threshold)
 		{
-			if (Physics2D.Raycast(transform.position,player.transform.position - transform.position,range).collider.gameObject.tag == "Player")
+			RaycastHit2D hit = Physics2D.Raycast(transform.position,player.transform.position,range);
+
+			if (hit != null)
 			{
-				Debug.Log("detected!");
+				if (hit.collider.tag == "Player")
+				{
+					Debug.Log("Detected!");
+				}
+				else
+				{
+					Debug.Log("Not Detected!");
+				}
 			}
+
 		}
 	
 	}
