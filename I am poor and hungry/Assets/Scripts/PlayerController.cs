@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D selfRigid;
 
     public bool handsFull = false;
+	public int maxInventory;
 
     // Use this for initialization
     void Start()
@@ -75,11 +76,10 @@ public class PlayerController : MonoBehaviour
 	public void BeenCaught(Vector3 startPos)
 	{
 		transform.position = startPos;
-		handsFull = false;
-
+		GroceryCart.resetCart = true;
 		if (inventory.items.Count != 0)
 		{
-			inventory.items.Remove(0);
+			inventory.items.RemoveAt(0);
 		}
 
 	}
