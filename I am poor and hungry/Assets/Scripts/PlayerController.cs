@@ -75,4 +75,15 @@ public class PlayerController : MonoBehaviour
             player.EatFood(inventory.RetrieveItem().GetComponent<FoodUnity>().food);
         }
     }
+	public void BeenCaught(Vector3 startPos)
+	{
+		transform.position = startPos;
+		handsFull = false;
+
+		if (inventory.items.Count != 0)
+		{
+			inventory.items.Remove(0);
+		}
+
+	}
 }
