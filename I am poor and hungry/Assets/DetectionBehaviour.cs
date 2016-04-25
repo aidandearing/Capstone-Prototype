@@ -3,7 +3,7 @@ using System.Collections;
 
 public class DetectionBehaviour : MonoBehaviour
 {
-    public GameObject player;
+	public PlayerController player;
     public GameObject detectIcon;
     public float viewDistance = 100;
     public float viewAngle = 90;
@@ -19,13 +19,14 @@ public class DetectionBehaviour : MonoBehaviour
     {
         Vector3 angle = new Vector3(Mathf.Sin(viewAngle / 2 * Mathf.Deg2Rad), Mathf.Cos(viewAngle / 2 * Mathf.Deg2Rad), 0);
         viewThreshold = Vector3.Dot((transform.localToWorldMatrix * new Vector3(0, 1, 0)).normalized, (transform.localToWorldMatrix * angle).normalized);
+		player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
 		//Debug.DrawRay(transform.forward,player.transform.position );
-        Vector3 delta = player.transform.position - transform.position;
+		Vector3 delta = player.transform.position - transform.position;
         Debug.DrawLine(transform.position, transform.position + delta, new Color(255,0,0), 0.1f);
 
         if (delta.magnitude <= viewDistance)
@@ -42,6 +43,7 @@ public class DetectionBehaviour : MonoBehaviour
                     {
                         if (detectedPlayer)
                         {
+							DetectionBar.detectionAmount += 0.005f;
                             OnDetectionStay(hit.collider);
                         }
                         else
@@ -80,6 +82,11 @@ public class DetectionBehaviour : MonoBehaviour
                 detectedPlayer = false;
             }
         }
+		if (DetectionBar.detectionAmount == 1.0f)
+		{
+			player.BeenCaught(new Vector3(0.0f,-2.0f,0.0f));
+			DetectionBar.detectionAmount = 0.0f;
+		}
     }
 
     void OnDetectionStart(Collider2D other)

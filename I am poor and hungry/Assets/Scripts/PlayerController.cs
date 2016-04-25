@@ -56,4 +56,15 @@ public class PlayerController : MonoBehaviour
             handsFull = false;
         }
     }
+	public void BeenCaught(Vector3 startPos)
+	{
+		transform.position = startPos;
+		handsFull = false;
+
+		if (inventory.items.Count != 0)
+		{
+			inventory.items.Remove(0);
+		}
+
+	}
 }
