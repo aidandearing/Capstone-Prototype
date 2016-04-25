@@ -43,7 +43,7 @@ public class DetectionBehaviour : MonoBehaviour
                     {
                         if (detectedPlayer)
                         {
-							DetectionBar.detectionAmount += 0.005f;
+							
                             OnDetectionStay(hit.collider);
                         }
                         else
@@ -82,11 +82,7 @@ public class DetectionBehaviour : MonoBehaviour
                 detectedPlayer = false;
             }
         }
-		if (DetectionBar.detectionAmount == 1.0f)
-		{
-			player.BeenCaught(new Vector3(0.0f,-2.0f,0.0f));
-			DetectionBar.detectionAmount = 0.0f;
-		}
+
     }
 
     void OnDetectionStart(Collider2D other)
@@ -95,15 +91,15 @@ public class DetectionBehaviour : MonoBehaviour
         {
             detectInstance = Instantiate(detectIcon, transform.position, new Quaternion()) as GameObject;
         }
-        SendMessage("StartDetectingPlayer", other.gameObject, SendMessageOptions.DontRequireReceiver);
+		gameObject.SendMessage("OnDetectionStart", other.gameObject, SendMessageOptions.DontRequireReceiver);
 
-        Debug.Log("Started detecting player");
+        //Debug.Log("Started detecting player");
     }
 
     void OnDetectionStay(Collider2D other)
     {
-        Debug.Log("Continued detecting player");
-        SendMessage("DetectingPlayer", other.gameObject, SendMessageOptions.DontRequireReceiver);
+        //Debug.Log("Continued detecting player");
+		gameObject.SendMessage("OnDetectionStay", other.gameObject, SendMessageOptions.DontRequireReceiver);
     }
 
     void OnDetectionEnd(Collider2D other)
@@ -113,8 +109,8 @@ public class DetectionBehaviour : MonoBehaviour
             Destroy(detectInstance);
             detectInstance = null;
         }
-        SendMessage("StopDetectingPlayer", other.gameObject, SendMessageOptions.DontRequireReceiver);
+		gameObject.SendMessage("OnDetectionEnd", other.gameObject, SendMessageOptions.DontRequireReceiver);
 
-        Debug.Log("Ended detecting player");
+        //Debug.Log("Ended detecting player");
     }
 }
