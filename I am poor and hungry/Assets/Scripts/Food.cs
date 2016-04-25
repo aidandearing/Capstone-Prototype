@@ -22,7 +22,7 @@ public class Food //: Item
     public int rarity;
     public string[] categories;
     public int food;
-    public int nutrition;
-    public int poison;
+    public float nutrition;
+    public float poison;
     public ModifierHandler modifier;
 }
