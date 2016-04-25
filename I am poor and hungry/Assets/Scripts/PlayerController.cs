@@ -28,10 +28,13 @@ public class PlayerController : MonoBehaviour
         if (inventory.items.Count > 0)
         {
             handsFull = true;
+            Food food = (inventory.items[0] as GameObject).GetComponent<FoodUnity>().food;
+            UIInterface.UI.SetItemInHandText(food.name);
         }
         else
         {
             handsFull = false;
+            UIInterface.UI.SetItemInHandText("");
         }
     }
 
