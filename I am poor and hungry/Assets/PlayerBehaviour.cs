@@ -9,15 +9,21 @@ public class PlayerBehaviour
     public float nutrition = 0;
     public float poison = 0;
 
+    [SerializeField]
     private float nutritionQueued;
+    [SerializeField]
     private float poisonQueued;
 
     public void Update()
     {
         hunger -= Time.deltaTime * hungerNutritionMult;
 
-        nutrition += (nutritionQueued / 10) * Time.deltaTime;
-        poison += (poisonQueued / 10) * Time.deltaTime;
+        float nutritiontick = (nutritionQueued / 10) * Time.deltaTime;
+        float poisontick = (poisonQueued / 10) * Time.deltaTime;
+        nutrition += nutritiontick;
+        poison += poisontick;
+        nutritionQueued -= nutritiontick;
+        poisonQueued -= poisontick;
 
         CalculateMultipliers();
     }
