@@ -46,12 +46,10 @@ public class SecurityCameraRotation : MonoBehaviour {
 		{
 			if((startRot.eulerAngles - transform.rotation.eulerAngles).sqrMagnitude < 0.3) 
 			{
-				Debug.Log("Flip!");
 				FlipRotation();
 			}
 			if (transform.rotation.eulerAngles.z < 0.0f)
 			{
-				Debug.Log("Flip");
 				FlipRotation();
 			}
 		}

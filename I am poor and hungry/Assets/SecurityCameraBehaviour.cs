@@ -32,9 +32,5 @@ public class SecurityCameraBehaviour : MonoBehaviour {
 	{
 		detectedPlayer = false;
 	}
-	void OnDetectionStay(GameObject detectedObj)
-	{
-		detectedPlayer = true;
-	}
 
 }

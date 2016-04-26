@@ -41,5 +41,6 @@ public class GroceryCart : MonoBehaviour {
 				}
 			}
 		}
+		Debug.Log(inventory.items.Count);
 	}
 }
