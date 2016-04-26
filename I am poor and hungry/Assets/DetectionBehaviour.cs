@@ -19,7 +19,7 @@ public class DetectionBehaviour : MonoBehaviour
     {
         Vector3 angle = new Vector3(Mathf.Sin(viewAngle / 2 * Mathf.Deg2Rad), Mathf.Cos(viewAngle / 2 * Mathf.Deg2Rad), 0);
         viewThreshold = Vector3.Dot((transform.localToWorldMatrix * new Vector3(0, 1, 0)).normalized, (transform.localToWorldMatrix * angle).normalized);
-		player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+		//player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -43,13 +43,20 @@ public class DetectionBehaviour : MonoBehaviour
                     {
                         if (detectedPlayer)
                         {
-							
                             OnDetectionStay(hit.collider);
                         }
                         else
                         {
                             OnDetectionStart(hit.collider);
                             detectedPlayer = true;
+                        }
+                    }
+                    else
+                    {
+                        if (detectedPlayer)
+                        {
+                            OnDetectionEnd(playerLastCollision);
+                            detectedPlayer = false;
                         }
                     }
                     playerLastCollision = hit.collider;
