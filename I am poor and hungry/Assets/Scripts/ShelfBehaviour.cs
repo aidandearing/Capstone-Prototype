@@ -29,8 +29,11 @@ public class ShelfBehaviour : MonoBehaviour
             if (player != null)
             {
                 // Give them an item
-                player.inventory.AddItem(inventory.RetrieveRandomItem());
-                lootTimes++;
+                if (!player.handsFull)
+                {
+                    player.inventory.AddItem(inventory.RetrieveRandomItem());
+                    lootTimes++;
+                }
             }
         }
     }
