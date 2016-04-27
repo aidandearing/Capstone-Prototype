@@ -12,6 +12,13 @@ public class UIInterface : MonoBehaviour
     [SerializeField]
     private Image image_progressBar;
 
+    [SerializeField]
+    private Image image_detectionBar;
+    [SerializeField]
+    private Image image_detectionBarDark;
+    [SerializeField]
+    private bool detectionOn = false;
+
     // Use this for initialization
     void Start()
     {
@@ -19,6 +26,14 @@ public class UIInterface : MonoBehaviour
 
         image_progressBar.fillMethod = Image.FillMethod.Horizontal;
         image_progressBar.type = Image.Type.Filled;
+
+        image_detectionBar.enabled = image_detectionBarDark.enabled = detectionOn;
+
+        if (detectionOn)
+        {
+            image_detectionBar.fillMethod = Image.FillMethod.Horizontal;
+            image_detectionBar.type = Image.Type.Filled;
+        }
     }
 
     // Update is called once per frame
@@ -35,5 +50,13 @@ public class UIInterface : MonoBehaviour
     public void SetProgressBar(float percent)
     {
         image_progressBar.fillAmount = percent;
+    }
+
+    public void SetDetectionBar(float percent)
+    {
+        if (detectionOn)
+        {
+            image_detectionBar.fillAmount = percent;
+        }
     }
 }
