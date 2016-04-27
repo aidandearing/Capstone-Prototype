@@ -17,11 +17,14 @@ public class PlayerBehaviour
     public void Update()
     {
         hunger -= Time.deltaTime * hungerNutritionMult;
+        UIInterface.UI.SetHungerBar(hunger / 1200);
 
         float nutritiontick = (nutritionQueued / 10) * Time.deltaTime;
         float poisontick = (poisonQueued / 10) * Time.deltaTime;
+
         nutrition += nutritiontick;
         poison += poisontick;
+
         nutritionQueued -= nutritiontick;
         poisonQueued -= poisontick;
 

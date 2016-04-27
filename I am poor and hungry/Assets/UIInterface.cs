@@ -13,6 +13,9 @@ public class UIInterface : MonoBehaviour
     private Image image_progressBar;
 
     [SerializeField]
+    private Image image_hungerBar;
+
+    [SerializeField]
     private Image image_detectionBar;
     [SerializeField]
     private Image image_detectionBarDark;
@@ -26,6 +29,9 @@ public class UIInterface : MonoBehaviour
 
         image_progressBar.fillMethod = Image.FillMethod.Horizontal;
         image_progressBar.type = Image.Type.Filled;
+
+        image_hungerBar.fillMethod = Image.FillMethod.Horizontal;
+        image_hungerBar.type = Image.Type.Filled;
 
         image_detectionBar.enabled = image_detectionBarDark.enabled = detectionOn;
 
@@ -52,6 +58,12 @@ public class UIInterface : MonoBehaviour
     {
         image_progressBar.fillAmount = percent;
     }
+
+    public void SetHungerBar(float percent)
+    {
+        image_hungerBar.fillAmount = percent;
+    }
+
 
     public void SetDetectionBar(float percent)
     {
