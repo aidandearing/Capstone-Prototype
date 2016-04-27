@@ -7,6 +7,7 @@ public class DetectionBehaviour : MonoBehaviour
     public GameObject detectIcon;
     public float viewDistance = 100;
     public float viewAngle = 90;
+	public LayerMask lm;
 
     private float viewThreshold;
     private GameObject detectInstance;
@@ -35,7 +36,7 @@ public class DetectionBehaviour : MonoBehaviour
 
             if (dot >= viewThreshold)
             {
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, delta);
+				RaycastHit2D hit = Physics2D.Raycast(transform.position, delta,viewDistance,lm);
 
                 if (hit.collider != null)
                 {
