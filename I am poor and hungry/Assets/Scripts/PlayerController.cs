@@ -74,6 +74,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Eat"))
         {
             player.EatFood(inventory.RetrieveItem().GetComponent<FoodUnity>().food);
+            UIInterface.UI.SetItemInHandText("");
         }
     }
 	public void BeenCaught(Vector3 startPos)

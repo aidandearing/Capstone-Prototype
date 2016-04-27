@@ -57,11 +57,11 @@ public class Recipe
             names = new ArrayList();
         }
 
-        if (!names.Contains(name))
-        {
+        //if (!names.Contains(name))
+        //{
             recipes.Add(this);
             names.Add(name);
-        }
+        //}
     }
 
     public bool CanBeMade(Food[] foods)

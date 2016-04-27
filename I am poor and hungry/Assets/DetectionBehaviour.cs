@@ -36,7 +36,7 @@ public class DetectionBehaviour : MonoBehaviour
 
             if (dot >= viewThreshold)
             {
-				RaycastHit2D hit = Physics2D.Raycast(transform.position, delta,viewDistance,lm);
+				RaycastHit2D hit = Physics2D.Raycast(transform.position, delta,viewDistance, lm);
 
                 if (hit.collider != null)
                 {
@@ -99,7 +99,7 @@ public class DetectionBehaviour : MonoBehaviour
         {
             detectInstance = Instantiate(detectIcon, transform.position, new Quaternion()) as GameObject;
         }
-		gameObject.SendMessage("OnDetectionStart", other.gameObject, SendMessageOptions.DontRequireReceiver);
+		gameObject.SendMessage("DetectionStart", other, SendMessageOptions.DontRequireReceiver);
 
         //Debug.Log("Started detecting player");
     }
@@ -107,7 +107,7 @@ public class DetectionBehaviour : MonoBehaviour
     void OnDetectionStay(Collider2D other)
     {
         //Debug.Log("Continued detecting player");
-		gameObject.SendMessage("OnDetectionStay", other.gameObject, SendMessageOptions.DontRequireReceiver);
+		gameObject.SendMessage("DetectionStay", other, SendMessageOptions.DontRequireReceiver);
     }
 
     void OnDetectionEnd(Collider2D other)
@@ -117,7 +117,7 @@ public class DetectionBehaviour : MonoBehaviour
             Destroy(detectInstance);
             detectInstance = null;
         }
-		gameObject.SendMessage("OnDetectionEnd", other.gameObject, SendMessageOptions.DontRequireReceiver);
+		gameObject.SendMessage("DetectionEnd", other, SendMessageOptions.DontRequireReceiver);
 
         //Debug.Log("Ended detecting player");
     }

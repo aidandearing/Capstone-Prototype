@@ -33,6 +33,7 @@ public class UIInterface : MonoBehaviour
         {
             image_detectionBar.fillMethod = Image.FillMethod.Horizontal;
             image_detectionBar.type = Image.Type.Filled;
+            SetDetectionBar(SecurityDetection.Instance.detectionPercent);
         }
     }
 
