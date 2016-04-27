@@ -85,7 +85,5 @@ public class PlayerController : MonoBehaviour
 		{
 			inventory.items.RemoveAt(0);
 		}
-		DetectionBar.detectionAmount = 0.0f;
-
 	}
 }
